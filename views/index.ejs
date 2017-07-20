@@ -3,9 +3,27 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <main>
+    <div class="row">
+      <div class="col-sm-8">
+
+        <div class="jumbotron">
+          <h1>Test Bootstrap</h1>
+          <p>Welcome to templating using EJS</p>
+        </div>
+
+      </div>
+      <div class="col-sm-4">
+
+        <div class="well">
+          <h3>Look I'm A Sidebar!</h3>
+        </div>
+
+      </div>
+    </div>
+  </main>
   </body>
 </html>

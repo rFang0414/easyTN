@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var orm = require('orm');
 
 var app = express();
 
@@ -42,5 +43,21 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(orm.express("mysql://root:root@localhost/easyTN", {
+    define: function (db, models, next) {
+        models.person = db.define("person", {
+            id:      {type: 'serial', key: true}, // the auto-incrementing primary key
+            name:    {type: 'text'},
+            surname: {type: 'text'},
+            age:     {type: 'number'}
+        });
+
+        models.person.sync(function (err) {
+
+        });
+        next();
+    }
+}));
 
 module.exports = app;
