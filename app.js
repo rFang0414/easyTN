@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+require('dotenv').config()
 var index = require('./routes/index');
 var users = require('./routes/users');
 var orm = require('orm');
@@ -44,7 +44,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(orm.express("mysql://root:root@localhost/easyTN", {
+console.log(process.env.DB_PASS);
+console.log('========================');
+app.use(orm.express("mysql://root:"+ process.env.DB_PASS +"@localhost/easyTN", {
     define: function (db, models, next) {
         models.person = db.define("person", {
             id:      {type: 'serial', key: true}, // the auto-incrementing primary key
