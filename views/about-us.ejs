@@ -2,28 +2,25 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <% include ./partials/head %>
   </head>
   <body>
   <main>
+    <header>
+      <% include ./partials/header %>
+    </header>
+
     <div class="row">
       <div class="col-sm-8">
-
         <div class="jumbotron">
-          <h1>Test Bootstrap</h1>
-          <p>Welcome to templating using EJS</p>
+          <h1>66666</h1>
         </div>
-
-      </div>
-      <div class="col-sm-4">
-
-        <div class="well">
-          <h3>Look I'm A Sidebar!</h3>
-        </div>
-
       </div>
     </div>
+
+    <footer class="footer footer-color-black">
+      <% include ./partials/footer %>
+    </footer>
   </main>
   </body>
 </html>

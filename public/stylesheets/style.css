@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.footer-color-black{
+    color: #DDDDDD;
+    overflow: hidden;
+    line-height: 20px;
+    border-top: 1px solid #DDDDDD;
+}
+
+.copyright {
+    font-size: 14px;
+    font-family: 'Droid Serif', "Helvetica Neue", "Helvetica","Arial";
+    color: #777777;
+    padding: 10px 15px;
+    margin: 15px 3px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.footer .social-area {
+    padding: 15px 0;
+    float: right;
+}
