@@ -78,4 +78,40 @@ router.post('/company', function (req, res, next) {
   });
 });
 
+router.get('/company-content/:company_id', function (req, res, next) {
+  req.models.companyContent.find({ company_id: req.params.company_id }, function (err, result) {
+    if (err) {
+      res.sendStatus(404);
+      return;
+    }
+
+    res.send(result);
+  });
+});
+
+router.post('/company-content', function (req, res, next) {
+  if (!req.body.company_id) {
+    res.sendStatus(404);
+    return;
+  }
+
+  var companyContent = {
+    company_id: req.body.company_id,
+    mission: req.body.mission,
+    about_us: req.body.about_us,
+    contact_us: req.body.contact_us,
+    logo: req.body.logo,
+    hp_imgs: req.body.hp_imgs,
+    about_us_imgs: req.body.about_us_imgs
+  };
+
+  req.models.companyContent.create(companyContent, function (err, result) {
+    if (err) {
+      res.sendStatus(500);
+    }
+
+    res.send(result);
+  });
+});
+
 module.exports = router;

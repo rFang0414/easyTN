@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(orm.express("mysql://root:" + process.env.DB_PASS + "@localhost/easyTN", {
+app.use(orm.express("mysql://root:" + process.env.DB_PASS + "@10.63.88.138/easyTN", {
     define: function (db, models, next) {
         models.person = db.define("person", {
             id: { type: 'serial', key: true }, // the auto-incrementing primary key
@@ -50,6 +50,22 @@ app.use(orm.express("mysql://root:" + process.env.DB_PASS + "@localhost/easyTN",
         });
 
         models.company.sync(function (err) {
+
+        });
+
+        models.companyContent = db.define("company_content", {
+            id: { type: 'serial', key: true }, // the auto-incrementing primary key
+            mission: { type: 'text' },
+            about_us: { type: 'text' },
+            contact_us: { type: 'text' },
+            logo: { type: 'text' },
+            hp_imgs: { type: 'text' },
+            about_us_imgs: {type: 'text'}
+        });
+
+        models.companyContent.hasOne("company", models.company, { required: true });
+
+        models.companyContent.sync(function (err) {
 
         });
         next();
