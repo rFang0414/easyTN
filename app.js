@@ -23,6 +23,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(orm.express("mysql://root:"+ process.env.DB_PASS +"@localhost/easyTN", {
+    define: function (db, models, next) {
+        models.person = db.define("person", {
+            id:      {type: 'serial', key: true}, // the auto-incrementing primary key
+            name:    {type: 'text'},
+            surname: {type: 'text'},
+            age:     {type: 'number'}
+        });
+
+        models.person.sync(function (err) {
+
+        });
+        next();
+    }
+}));
+
 app.use('/', index);
 app.use('/users', users);
 
@@ -44,22 +60,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-console.log(process.env.DB_PASS);
-console.log('========================');
-app.use(orm.express("mysql://root:"+ process.env.DB_PASS +"@localhost/easyTN", {
-    define: function (db, models, next) {
-        models.person = db.define("person", {
-            id:      {type: 'serial', key: true}, // the auto-incrementing primary key
-            name:    {type: 'text'},
-            surname: {type: 'text'},
-            age:     {type: 'number'}
-        });
 
-        models.person.sync(function (err) {
-
-        });
-        next();
-    }
-}));
 
 module.exports = app;
