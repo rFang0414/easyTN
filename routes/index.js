@@ -37,7 +37,7 @@ router.post('/', function (req, res) {
         }
 
         // save to db
-        var logo = {company_id:'1', path: uploadDir};
+        var logo = {company_id:'1', path: "/upload/" + fName};
         req.models.companyLogos.create(logo, function (err, results) {
           console.log('--------------------------INSERT----------------------------');
           //console.log('INSERT ID:',result.insertId);
