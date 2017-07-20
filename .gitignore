@@ -31,5 +31,6 @@ npm-debug.log
 
 .idea/
 .env
+public/upload/*
 
 .DS_Store

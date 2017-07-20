@@ -12,7 +12,6 @@ var orm = require('orm');
 var app = express();
 
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,55 +20,57 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(orm.express("mysql://root:" + process.env.DB_PASS + "@10.63.88.138/easyTN", {
-    define: function (db, models, next) {
-        models.person = db.define("person", {
-            id: { type: 'serial', key: true }, // the auto-incrementing primary key
-            name: { type: 'text' },
-            surname: { type: 'text' },
-            age: { type: 'number' }
-        });
+  define: function (db, models, next) {
+    models.person = db.define("person", {
+      id: {type: 'serial', key: true}, // the auto-incrementing primary key
+      name: {type: 'text'},
+      surname: {type: 'text'},
+      age: {type: 'number'}
+    });
 
-        models.person.sync(function (err) {
+    models.person.sync(function (err) { });
 
-        });
+    models.company = db.define("company", {
+      id: {type: 'serial', key: true}, // the auto-incrementing primary key
+      name: {type: 'text'},
+      location: {type: 'text'},
+      years_funded: {type: 'number'},
+      employer_count: {type: 'number'},
+      type: {type: 'text'},
+      industry: {type: 'text'}
 
-        models.company = db.define("company", {
-            id: { type: 'serial', key: true }, // the auto-incrementing primary key
-            name: { type: 'text' },
-            location: { type: 'text' },
-            years_funded: { type: 'number' },
-            employer_count: { type: 'number' },
-            type: { type: 'text' },
-            industry: { type: 'text' }
+    });
 
-        });
+    models.company.sync(function (err) { });
 
-        models.company.sync(function (err) {
+    models.companyContent = db.define("company_content", {
+      id: {type: 'serial', key: true}, // the auto-incrementing primary key
+      mission: {type: 'text'},
+      about_us: {type: 'text'},
+      contact_us: {type: 'text'},
+      logo: {type: 'text'},
+      hp_imgs: {type: 'text'},
+      about_us_imgs: {type: 'text'}
+    });
 
-        });
+    models.companyLogos = db.define("company_logos", {
+      id: {type: 'serial', key: true},
+      company_id: {type: 'text'},
+      path: {type: 'text'}
+    });
 
-        models.companyContent = db.define("company_content", {
-            id: { type: 'serial', key: true }, // the auto-incrementing primary key
-            mission: { type: 'text' },
-            about_us: { type: 'text' },
-            contact_us: { type: 'text' },
-            logo: { type: 'text' },
-            hp_imgs: { type: 'text' },
-            about_us_imgs: {type: 'text'}
-        });
+    models.companyLogos.sync(function (err) { });
 
-        models.companyContent.hasOne("company", models.company, { required: true });
+    models.companyContent.hasOne("company", models.company, {required: true});
 
-        models.companyContent.sync(function (err) {
-
-        });
-        next();
-    }
+    models.companyContent.sync(function (err) { });
+    next();
+  }
 }));
 
 app.use('/', index);
@@ -77,22 +78,21 @@ app.use('/about', aboutUs);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
-
 
 
 module.exports = app;

@@ -5,7 +5,7 @@ var formidable = require("formidable");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  req.models.person.find({ name: 'SB' }, function (err, result) {
+  req.models.person.find({name: 'SB'}, function (err, result) {
   });
   res.render('index', {title: 'Express'});
 });
@@ -35,6 +35,16 @@ router.post('/', function (req, res) {
           res.write(err + "n");
           res.end();
         }
+
+        // save to db
+        var logo = {company_id:'1', path: uploadDir};
+        req.models.companyLogos.create(logo, function (err, results) {
+          console.log('--------------------------INSERT----------------------------');
+          //console.log('INSERT ID:',result.insertId);
+          console.log('INSERT ID:', results);
+          console.log('-----------------------------------------------------------------/n/n');
+        });
+
 //res.write("upload image:<br/>");
         res.write("<img src='/upload/" + fName + "' />");
         res.end();
@@ -44,7 +54,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/company/:id', function (req, res, next) {
-  req.models.company.find({ id: req.params.id }, function (err, result) {
+  req.models.company.find({id: req.params.id}, function (err, result) {
     if (err) {
       res.sendStatus(404);
       return;
