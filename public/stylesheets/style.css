@@ -118,14 +118,6 @@ p, label, .form-control, .title h5 {
     margin-left: 8.33333333%;
 }
 
-.col-md-10 {
-    width: 83.33333333%;
-}
-
-.col-md-4 {
-    width: 33.33333333%;
-}
-
 .card.add-animation.animate, .list-logos .logo.add-animation.animate, .project.add-animation.animate, .projects .info.add-animation.animate, .tab-content.add-animation.animate, .nav.add-animation.animate, .team .member.add-animation.animate, .address.add-animation.animate, .address-container.add-animation.animate, .form-group.add-animation.animate, .footer .info.add-animation.animate, .description.add-animation.animate, .carousel.add-animation.animate, .static-image.add-animation.animate, p.add-animation.animate {
     opacity: 1;
 }
