@@ -35,7 +35,7 @@
                   <div class="separator-container">
                     <div class="separator line-separator">∎</div>
                   </div>
-                  <p class="large">
+                  <p class="large" id="about-us">
                     Creative Tim is a startup that creates design tools that make the web development process faster and easier. We love the web and care deeply for how users interact with a digital product. We power businesses and individuals to create better looking web projects around the world.
                   </p>
                 </div>
@@ -86,7 +86,7 @@
       <% include ./partials/footer %>
     </footer>
   </main>
-  <!--<script>
+  <script>
     $(document).ready(function () {
       $.get('company-content/1', function (data) {
         var content = data[data.length - 1];
@@ -96,11 +96,12 @@
         var hpImg = content['hp_imgs'];
         var aboutUsImg = content['about_us_imgs'];
 
-        $("#hpBgImg").attr('src', hpImg);
+        $("#hpBgImg").attr('src', logo);
         $("#mission").text(mission);
+        $("#about-us").text(aboutUs);
       });
 
     });
-  </script>-->
+  </script>
   </body>
 </html>
