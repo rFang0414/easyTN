@@ -47,9 +47,7 @@ router.post('/', function (req, res) {
           console.log('-----------------------------------------------------------------/n/n');
         });
 
-//res.write("upload image:<br/>");
-        res.write("<img src='/upload/" + fName + "' />");
-        res.end();
+        res.send("/upload/" + fName);
       })
     }
   });
