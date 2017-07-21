@@ -15,6 +15,8 @@ uploader.init();
 
 //绑定各种事件，并在事件监听函数中做你想做的事
 uploader.bind('FilesAdded',function(uploader,files){
+  var input = $('#imgNames');
+  input.text(input.text()+ ' '+ files[0].name)
   //每个事件监听函数都会传入一些很有用的参数，
   //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
 });
@@ -26,10 +28,12 @@ uploader.bind('UploadProgress',function(uploader,file){
 //......
 
 uploader.bind('FileUploaded', function (uploader,file,responseObject) {
-  //TODO responseObject.response is the img's content
-})
+  $('#logo-value').val(responseObject.response)
+});
+
 //最后给"开始上传"按钮注册事件
-document.getElementById('start_upload').onclick = function(){
+document.getElementById('start_upload').onclick = function(event){
+  event.preventDefault();
   uploader.start(); //调用实例对象的start()方法开始上传文件，当然你也可以在其他地方调用该方法
-}
+};
 
