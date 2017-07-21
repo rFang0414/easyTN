@@ -77,13 +77,11 @@
                     about_us_imgs: aboutUsImg
                 };
 
-                var jqxhr = $.post("company-content", companyContent, function () {
+                var jqxhr = $.post("company-content", companyContent, function (result) {
                     alert("success");
-                })
-                    .success(function () { alert("second success"); })
-                    .error(function () { alert("error"); })
-                    .complete(function () { alert("complete"); });
-
+                    location.href= '/';
+                });
+                
                 event.preventDefault();
             });
         });
