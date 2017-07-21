@@ -15,17 +15,35 @@ uploader.init();
 
 //绑定各种事件，并在事件监听函数中做你想做的事
 uploader.bind('FilesAdded',function(uploader,files){
-  var input = $('#imgNames');
-  input.text(input.text()+ ' '+ files[0].name)
-  //每个事件监听函数都会传入一些很有用的参数，
-  //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+  $.each(files, function(){
+
+    var img = new mOxie.Image();
+
+    img.onload = function() {
+      this.embed($('#preview').get(0), {
+        width: 100,
+        height: 100,
+        crop: true
+      });
+    };
+
+    img.onembedded = function() {
+      this.destroy();
+    };
+
+    img.onerror = function() {
+      this.destroy();
+    };
+
+    img.load(this.getSource());
+
+  });
+
 });
 uploader.bind('UploadProgress',function(uploader,file){
   //每个事件监听函数都会传入一些很有用的参数，
   //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
 });
-//......
-//......
 
 uploader.bind('FileUploaded', function (uploader,file,responseObject) {
   $('#logo-value').val(responseObject.response)
