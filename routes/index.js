@@ -5,9 +5,11 @@ var formidable = require("formidable");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  req.models.person.find({name: 'SB'}, function (err, result) {
-  });
-  res.render('index', {title: 'Express'});
+  res.render('index', {title: 'Welcome to your website'});
+});
+
+router.get('/edit', function (req, res, next) {
+  res.render('admin/create-edit-page', {title: 'Build your webiste'});
 });
 
 router.post('/', function (req, res) {

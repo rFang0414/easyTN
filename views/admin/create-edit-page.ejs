@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>Build your website in only one step</h1>
+            <form id="company-content">
+                <div class="form-group">
+                    <label for="name">Company Name:</label>
+                    <input type="input" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="logo">Logo:</label>
+                    <input type="file" class="form-control" id="logo">
+                    <input type="hidden" id="logo-value">
+                </div>
+                <div class="form-group">
+                    <label for="mission">Mission:</label>
+                    <textarea class="form-control" rows="10" id="mission"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="hp-img">Home page background image:</label>
+                    <input type="file" class="form-control" id="hp-img">
+                    <input type="hidden" id="hp-img-value">
+                </div>
+                <div class="text-center" id="moreBtn">
+                    <span>More</span>
+                    <hr>
+                </div>
+                <div class="more-options">
+                    <div class="form-group">
+                        <label for="about-us">About us:</label>
+                        <textarea class="form-control" rows="10" id="about-us"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="about-us-img">About us image:</label>
+                        <input type="file" class="form-control" id="about-us-img">
+                        <input type="hidden" id="about-us-img-value">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            var more = $(".more-options");
+            more.hide();
+            $("#moreBtn").click(function () {
+                more.show();
+            });
+
+            $("#company-content").submit(function (event) {
+                var name = $("#name").val();
+                var logo = $("#logo-value").val();
+                var mission = $("#mission").val();
+                var hpImg = $("#hp-img-value").val();
+
+                var aboutUs = $("#about-us").val();
+                var aboutUsImg = $("#about-us-img-value").val();
+
+                var companyContent = {
+                    company_id: '1',
+                    mission: mission,
+                    about_us: aboutUs,
+                    contact_us: '',
+                    logo: logo,
+                    hp_imgs: hpImg,
+                    about_us_imgs: aboutUsImg
+                };
+
+                var jqxhr = $.post("company-content", companyContent, function () {
+                    alert("success");
+                })
+                    .success(function () { alert("second success"); })
+                    .error(function () { alert("error"); })
+                    .complete(function () { alert("complete"); });
+
+                event.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
