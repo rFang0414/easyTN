@@ -18,7 +18,7 @@
                     <input type="input" class="form-control" id="name">
                 </div>
                 <div class="form-group">
-                    <label for="logo">Logo:</label>
+                    <label for="logo">Images: logo, home page background, about us.</label>
                     <input type="hidden" id="logo-value">
                     <% include ../img-uploader %>
                     <label id="imgNames"></label>
@@ -28,7 +28,6 @@
                     <textarea class="form-control" rows="10" id="mission"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="hp-img">Home page background image:</label>
                     <input type="hidden" id="hp-img-value">
                 </div>
                 <div class="text-center" id="moreBtn">
@@ -41,8 +40,6 @@
                         <textarea class="form-control" rows="10" id="about-us"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="about-us-img">About us image:</label>
-                        <input type="hidden" id="about-us-img-value">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -60,12 +57,13 @@
 
             $("#company-content").submit(function (event) {
                 var name = $("#name").val();
-                var logo = $("#logo-value").val();
+                var imgs = $("#logo-value").val().split(',');
+                var logo = imgs[0];
                 var mission = $("#mission").val();
-                var hpImg = $("#hp-img-value").val();
+                var hpImg = imgs[1];
 
                 var aboutUs = $("#about-us").val();
-                var aboutUsImg = $("#about-us-img-value").val();
+                var aboutUsImg = imgs[2];
 
                 var companyContent = {
                     company_id: '1',

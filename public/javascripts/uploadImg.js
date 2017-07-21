@@ -46,7 +46,11 @@ uploader.bind('UploadProgress',function(uploader,file){
 });
 
 uploader.bind('FileUploaded', function (uploader,file,responseObject) {
-  $('#logo-value').val(responseObject.response)
+  var input = $('#logo-value');
+  if(input.val()) {
+    input.val(input.val() + ',' + responseObject.response)
+  } else
+    input.val(responseObject.response);
 });
 
 //最后给"开始上传"按钮注册事件
