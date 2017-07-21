@@ -59,3 +59,74 @@ p.large-thin-portrait {
     background: #333;
     font-size: 18px;
 }
+
+.section .text-area {
+    padding: 4.375em 0;
+    position: relative;
+    z-index: 3;
+    display: block;
+    background-color: #FFFFFF;
+}
+
+.section {
+    padding: 1.875em 0;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.section-we-are-1 .title {
+    max-width: 980px;
+}
+
+.section .title {
+    max-width: 980px;
+    margin: 0 auto;
+    display: block;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h2, .h2 {
+    font-size: 2em;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    margin: 0.4em 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.separator-container {
+    text-align: center;
+    position: relative;
+}
+
+p, label, .form-control, .title h5 {
+    font-family: "Myriad Set Pro", sans-serif;
+    font-style: normal;
+    font-weight: 200;
+}
+
+.col-md-offset-1 {
+    margin-left: 8.33333333%;
+}
+
+.col-md-10 {
+    width: 83.33333333%;
+}
+
+.col-md-4 {
+    width: 33.33333333%;
+}
+
+.card.add-animation.animate, .list-logos .logo.add-animation.animate, .project.add-animation.animate, .projects .info.add-animation.animate, .tab-content.add-animation.animate, .nav.add-animation.animate, .team .member.add-animation.animate, .address.add-animation.animate, .address-container.add-animation.animate, .form-group.add-animation.animate, .footer .info.add-animation.animate, .description.add-animation.animate, .carousel.add-animation.animate, .static-image.add-animation.animate, p.add-animation.animate {
+    opacity: 1;
+}
+
