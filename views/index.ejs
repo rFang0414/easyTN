@@ -11,7 +11,7 @@
     </header>
     <div class="container" style="margin-top: 30px; width:1440px;">
       <divc lass="hero">
-          <img src="img/696654.jpg" style="width: 100%; max-width: 1440px; position: relative; background-size:cover"/>
+          <img id="hpBgImg" src="img/696654.jpg" style="width: 100%; max-width: 1440px; position: relative; background-size:cover"/>
       </div>
       <div class="textdiv">
         <h1>
@@ -21,14 +21,26 @@
         </h1>
       </div>
       <div class="textdiv">
-        <p class="large-thin-portrai画">We’re perfectionists. Idealists. Inventors. Forever tinkering with products and processes, always on the lookout for better. Whether you work at one of our global offices, offsite or even at home, a job at Apple will be demanding. But it also rewards bright, original thinking and hard work. And none of us here would have it any other way.</p>
-
-          <% include ./img-uploader %>
-
-
+        <p id="mission" class="large-thin-portrait">We’re perfectionists. Idealists. Inventors. Forever tinkering with products and processes, always on the lookout for better. Whether you work at one of our global offices, offsite or even at home, a job at Apple will be demanding. But it also rewards bright, original thinking and hard work. And none of us here would have it any other way.</p>
     <footer class="footer footer-color-black">
       <% include ./partials/footer %>
     </footer>
   </main>
+  <script>
+    $(document).ready(function () {
+      $.get('company-content/1', function (data) {
+        var content = data[data.length - 1];
+        var logo = content['logo'];
+        var mission = content['mission'];
+        var aboutUs = content['about_us'];
+        var hpImg = content['hp_imgs'];
+        var aboutUsImg = content['about_us_imgs'];
+
+        $("#hpBgImg").attr('src', hpImg);
+        $("#mission").text(mission);
+      });
+
+    });
+  </script>
   </body>
 </html>
